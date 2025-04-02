@@ -1,32 +1,32 @@
 package implementation
 
-type stack struct {
-	data []string
+type stack[T any] struct {
+	data []T
 }
 
-func NewStack() *stack {
-	return &stack{
-		data: []string{},
+func NewStack[T any]() *stack[T] {
+	return &stack[T]{
+		data: []T{},
 	}
 }
 
-func (s *stack) Push(value string) {
+func (s *stack[T]) Push(value T) {
 	s.data = append(s.data, value)
 }
-func (s *stack) Pop() {
+func (s *stack[T]) Pop() {
 	if len(s.data) == 0 {
 		return
 	}
 
 	s.data = s.data[:len(s.data)-1]
 }
-func (s *stack) Peek() string {
+func (s *stack[T]) Peek() T {
 	if len(s.data) == 0 {
-		return ""
+		panic("")
 	}
 
 	return s.data[len(s.data)-1]
 }
-func (s *stack) IsEmpty() bool {
+func (s *stack[T]) IsEmpty() bool {
 	return len(s.data) == 0
 }
